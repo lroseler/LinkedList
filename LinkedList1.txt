@@ -1,0 +1,60 @@
+//creates a linked list compiled of nodes that will hold integer value
+
+package labs;
+
+public class LinkedList<Integer>
+{
+	Node<Integer> head; //a node for the head
+	Node<Integer> tail; //a node for the tail
+	Node<Integer> current; //a node for the current node 
+	
+	int listSize; //an integer value for the size of the list
+	
+	public LinkedList() //an empty constructor
+	{
+		current = null;
+	}
+	public LinkedList(Node<Integer> in) //a constructor that accepts a Node holding an Integer
+	{
+		current =  in; //sets the current node to the input
+	}
+	
+	public void setHead()  //sets the head of the list
+	{
+		if(listSize == 0)
+		{
+			current = head;
+		}
+		else if(current.getPrevious() == null)
+		{
+			current = head;
+		}
+	}
+	public void setTail() //sets the tail of the list
+	{
+		if(current.getNext() == null)
+		{
+			current = tail;
+		}
+	}
+	public int getSize() //returns the variable listSize which is updated whenever a node is added or removed
+	{
+		return listSize;
+	}
+	public  void addLink(Node<Integer> newN) //adds a new link to the list
+	{
+		Node<Integer> newLink = new Node<Integer>(); //creates a new node object
+		current = newLink.getNext(); //sets the current node to the next
+		newLink = current; //then points the next node to the current
+		listSize++; //increments the listSize variable
+	}
+	public void removeLink(Node<Integer> newN) //removes a specified node
+	{
+		current = newN; //sets the current node to the input
+		Node<Integer> previous = current.getPrevious(); //creates a node for previous
+		Node<Integer> next = current.getNext(); //creates a node for the next node
+		previous = next; //sets the previous node before to the node after the inputed node
+		next = previous; //and restores the pointer 
+		listSize--;    //then decreases the variable listSize
+	}
+}
